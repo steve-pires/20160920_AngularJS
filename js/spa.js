@@ -41,7 +41,7 @@ app.config(['$routeProvider', function ($routeProvider) {
 }])
 
 ///// CONTROLLERS
-app.controller('AboutCtrl', ['$scope', 'defaultUser', 'APP_TITLE', function ($scope, defaultUser, APP_TITLE) {	
+app.controller('AboutCtrl', ['$scope', 'defaultUser', 'APP_TITLE', 'prettyCaseFunc', function ($scope, defaultUser, APP_TITLE, prettyCaseFunc) {	
 	
 	$scope.SOCIETY = {"name":"L'échoppe du dragon boîteux (interdit aux gobelins)"/*, "contact":"Steve PIRES"*/, "email":"spires@wemanity.com","tel":"0123456789"};
 
@@ -49,16 +49,30 @@ app.controller('AboutCtrl', ['$scope', 'defaultUser', 'APP_TITLE', function ($sc
 	$scope.title = APP_TITLE + " dans l\'échoppe runique, guerrier !";
 	$scope.user = defaultUser;
 
+	$scope.prettyCase = prettyCaseFunc;
 }]);
 
-app.controller('ProductsCtrl', ['$scope', '$routeParams', function ($scope, $routeParams, asc) {	
+app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', function ($scope, $routeParams, prettyCaseFunc, asc) {	
+	
+	// VARIABLES
+	$scope.products = [
+		{"id":1,"id_cat":42,"prix":2000.00,"nom":"Massue à pointes séculaire","desc":"Une vielle massue un peu rouillée passée entre les mains de nombreux rois et chevaliers depuis des siècles.","image":"images/produits/massue_a_pointes_seculaire.jpg"}
+		,{"id":2,"id_cat":42,"prix":777.00,"nom":"Epée valérienne","desc":"Une simple épée forgée par les anciens sages du mont Valéria.","image":"images/produits/epee_valerienne.jpg"}
+		,{"id":18,"id_cat":43,"prix":4500.00,"nom":"Armure complète en mithril","desc":"Une armure faite du métal le plus pur, pour une protection sans faille","image":"images/produits/armure_complete_mithril.jpg"}
+		,{"id":19,"id_cat":42,"prix":3600.00,"nom":"Epée impreignée du feu céleste","desc":"Epée de feu céleste à ne pas mettre entre toutes les mains, au risque de se voir embraser par elle","image":"images/produits/epee_feu_celeste.jpg"}
+	];
 	$scope.title = "Tous nos produits";
 	$scope.sortByPriceAsc = true;
 	$scope.sortByNameAsc = false;
 	$scope.sortByDescAsc = false;
 	$scope.sortField = 'prix';
+	$scope.prettyCase = prettyCaseFunc;
 
-	$scope.sortBy = function(button, field) {
+	// Augment $scope.products with new property 'quantite'
+	$scope.products.map(function(p) {p.quantite=0; return p;})
+
+	// FUNCTIONS
+	$scope.sortBy = function(clickedBtn, field) {
 		switch ( field) {
 		  case "prix":
 		  $scope.sortByPriceAsc = !$scope.sortByPriceAsc;
@@ -86,22 +100,15 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', function ($scope, $rou
 			$scope.sortField = field;
 		}
 
-		var buttons = button.parentNode.getElementsByTagName("button");
+		var buttons = clickedBtn.parentNode.getElementsByTagName("button");
 		for (var i = buttons.length - 1; i >= 0; i--) {
 			buttons[i].className = "";
 		}
 		event.target.className = "activeSortButton";
 	}
-	
 
-	$scope.products = [
-		{"id":1,"id_cat":42,"prix":2000.00,"nom":"Massue à pointes séculaire","desc":"Une vielle massue un peu rouillée passée entre les mains de nombreux rois et chevaliers depuis des siècles.","image":"images/produits/massue_a_pointes_seculaire.jpg"}
-		,{"id":2,"id_cat":42,"prix":777.00,"nom":"Epée valérienne","desc":"Une simple épée forgée par les anciens sages du mont Valéria.","image":"images/produits/epee_valerienne.jpg"}
-		,{"id":18,"id_cat":43,"prix":4500.00,"nom":"Armure complète en mithril","desc":"Une armure faite du métal le plus pur, pour une protection sans faille","image":"images/produits/armure_complete_mithril.jpg"}
-		,{"id":19,"id_cat":42,"prix":3600.00,"nom":"Epée impreignée du feu céleste","desc":"Epée de feu céleste à ne pas mettre entre toutes les mains, au risque de se voir embraser par elle","image":"images/produits/epee_feu_celeste.jpg"}
-	];
-
-	$scope.products.map(function(p) {p.quantite=0; return p;})
+	// Initialize array for first display (would be unsorted otherwise)
+	$scope.sortBy(document.getElementsByClassName("sorter")[0].children[0].children[1], 'prix');
 	
 	var _id = 0;
 	if(null != $routeParams.id) {
@@ -122,6 +129,25 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', function ($scope, $rou
 app.controller('CartCtrl', ['$scope', function ($scope) {	
 	$scope.title = "Vos choix";
 }]);
+
+
+///// FILTRES
+app.filter('prettyCase', function() {
+	return function( stringToPrettify) {
+		var _result = '';
+		var _words = stringToPrettify.split(' ');
+
+		for (var i = 0 ; i<= _words.length - 1; i++) {
+			var _word = _words[i].toLowerCase();
+			if('' != _word) {
+				var _newWord = _word[0].toUpperCase() + _word.substring(1);
+				if(0 != i) { _result += ' '};
+				_result += _newWord;
+			}
+		}
+		return _result;
+	};
+});
 
 
 ///// JS FUNCTIONS

@@ -9,9 +9,9 @@
 </div>
 
 <div data-ng-repeat="product in products | orderBy:sortField" class="productItem" data-category="{{product.id_cat}}" data-ng-class-odd="'productOdd'" data-ng-class-even="'productEven'">
-	<p class="article">{{product.nom}}</p>
+	<p class="article">{{product.nom | prettyCase}}</p>
 	<p class="prix">{{product.prix}} G</p>
-	<p class="description">Plus d'infos : {{product.desc}}</p>
+	<p class="description">Plus d'infos : {{product.desc | prettyCase}}</p>
 	<input class="quantite" type="number" data-ng-model="product.quantite" />
 	<div class="blankline">&nbsp;</div>
 </div>
