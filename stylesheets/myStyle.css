@@ -158,9 +158,6 @@ input.quantite {
 	margin: 5px 0;
 	float: right;
 }
-.activeSortButton {
-	color: #45955C;
-}
 .productOdd {
 	background: #ECF4EE;
 }
@@ -168,4 +165,40 @@ input.quantite {
 #repeatSelect {
 	margin: 15px 0;
 	width: 200px;
+}
+input {
+	border: 0 none;
+	border-bottom: 1px solid #a2caad;
+	padding: 2px 3px;
+	margin: 2px 0 10px 0;
+}
+input.ng-pristine {
+	background: #c7dfce;
+}
+input[required="required"].ng-invalid {
+	background: #FCC;
+	border: 1px solid #F55;
+}
+.errorMsg {
+	font-size: 0.8em;
+	color: #F00;
+	margin-top: -10px;
+	font-weight: bold;
+}
+
+.buttons input {
+	border: 1px solid #45955C;
+	border-radius: 4px;
+	background: #a2caad;
+	padding:5px 10px;
+	font-weight: bold;
+	font-variant: small-caps;
+	font-size: 1.2em;
+	margin : 0 10px 0 0;
+}
+.buttons input:hover {
+	cursor: pointer;
+}
+.productForm input[type="text"], .productForm input[type="number"] {
+	width: 350px;
 }
