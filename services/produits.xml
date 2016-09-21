@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8">
+
+	<produits nb="2">
+		<produit id="prd_001" id_categorie="massues">
+			<premierProduit />
+			<date-creation avant-JC="true">432-05-22</date-creation>
+			<nom>Massue à pointes séculaire</nom>
+			<description>Une vielle massue un peu rouillée passée entre les mains de nombreux rois et chevaliers depuis des siècles.</description>
+			<prix devise="G">2000</prix>
+			<image>//images/produits/massue_a_pointes_seculaire.jpg</image>
+		</produit>
+
+		<produit id="prd_002" id_categorie="epees">
+			<date-creation>1242-12-16</date-creation>
+			<nom>Epée valérienne</nom>
+			<description>Une simple épée forgée par les anciens sages du mont Valéria.</description>
+			<prix devise="G">777</prix>
+			<image>//images/produits/epee_valerienne.jpg</image>
+		</produit>
+	</produits>
+
+</xml>

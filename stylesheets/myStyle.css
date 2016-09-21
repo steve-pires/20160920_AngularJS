@@ -1,0 +1,166 @@
+
+/***
+*	Style TD
+***/
+#submitCommand {
+	padding-bottom: 45px;
+}
+#submitCommand input{
+	font-size: 1.2em;
+	font-weight: bold;
+	font-variant: small-caps;
+	color: #45955C;
+	text-align: center;
+	margin: 30px 0 0 0;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}
+#dzMain {
+	position: relative;
+}
+.post {
+	padding: 5px 5px 10px 5px;
+}
+.post:hover {
+	background: #d9e9de;
+}
+.caddy li {
+	text-align: right;
+}
+#sidebar .caddy li a {
+	font-size: 1.2em;
+	font-weight: bold;
+	color: #45955C;
+}
+#sidebar .caddy li a:hover {
+	color: #FFF;
+	background: #45955C;
+	text-decoration: none;
+}
+#sidebar h2 {
+	padding: 10px 5px 0 5px;
+}
+#sidebar h2:hover{
+	color: #FFF;
+	background: #45955C;
+}
+#sidebar h2:hover:first-letter {
+	color: #FFF;
+	font-weight: normal;
+}
+.product {
+	border-bottom: 2px solid #45955C;
+	padding-left: 15px !important;
+	box-shadow: 1px 1px 2px #888888;
+	background: #a2caad;
+}
+.product .title {
+	font-weight: bold;
+	font-variant: small-caps;
+	letter-spacing: 0;
+	font-size: 2em;
+	padding-top : 0;
+	margin-bottom: 5px;
+}
+.info {
+	background: #ECF4EE;
+	/*color: #45955C;*/
+	font-weight: bold;
+}
+
+/*.sidebar li a {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 105px;
+}*/
+
+
+
+/*****
+*	Style overriding (style.css)
+******/
+body {
+	background: #142c1b;
+}
+a {
+	color: #45955C;
+}
+
+#logo h1 a {
+	color: #45955C;
+}
+
+#menu .current_page_item a {
+	background: #45955C;
+}
+
+#menu a:hover {
+	background: #45955C;
+}
+
+.post .title a {
+	color: #45955C;
+}
+
+#sidebar h2 {
+	color: #45955C;
+}
+
+img.border {
+	border: 1px solid #333;
+}
+
+.post .title:first-letter, #sidebar h2:first-letter {
+	font-weight: bold;
+	color: #333;
+}
+
+#footer {
+	background: none;
+}
+#footer p {
+	color: #45955C;
+}
+
+.article {
+	float: left;
+	font-weight: bold;
+	color: #45955C;
+	font-size: 1.2em;
+	font-variant: small-caps;
+}
+.prix {
+	float: right;
+}
+.description {
+	clear:both;
+}
+.productItem {
+	border-bottom: 1px solid #45955C;
+	margin-bottom: 40px;
+}
+.productItem:last-child {
+	border-bottom: 0 none;
+}
+.templateTitle {
+	color: #45955C;
+	font-size: 2em;
+	margin: 10px 0 30px 0;
+}
+.templateTitle:first-letter {
+	font-weight: bold;
+	color: #333;
+}
+input.quantite {
+	width: 6ex;
+	margin: 5px 0;
+	float: right;
+}
+.activeSortButton {
+	color: #45955C;
+}
+.productOdd {
+	background: #ECF4EE;
+}
