@@ -170,6 +170,14 @@ app.filter('prettyCase', ['prettyCaseFunc', function(prettyCaseFunc) {
 }]);
 
 
+///// DIRECTIVES
+app.directive('cbErrorRequired', [function () {
+	return {
+		restrict: 'E',
+		templateUrl: 'js/directives/cb-error-required.html'
+	};
+}])
+
 ///// JS FUNCTIONS
 function activerMenu( e) {
 //	e.preventDefault();
