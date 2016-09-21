@@ -52,15 +52,22 @@ app.controller('AboutCtrl', ['$scope', 'defaultUser', 'APP_TITLE', 'prettyCaseFu
 	$scope.prettyCase = prettyCaseFunc;
 }]);
 
-app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', function ($scope, $routeParams, prettyCaseFunc, asc) {	
-	
+app.controller('ProductsCtrl', ['$scope', '$routeParams', '$http', 'prettyCaseFunc', '$http',
+	function ($scope, $routeParams, $http, prettyCaseFunc, asc) {	
 	// VARIABLES
 	$scope.products = [
 		{"id":1,"id_cat":42,"prix":2000.00,"nom":"Massue à pointes séculaire","desc":"Une vielle massue un peu rouillée passée entre les mains de nombreux rois et chevaliers depuis des siècles.","image":"images/produits/massue_a_pointes_seculaire.jpg"}
 		,{"id":2,"id_cat":42,"prix":777.00,"nom":"Epée valérienne","desc":"Une simple épée forgée par les anciens sages du mont Valéria.","image":"images/produits/epee_valerienne.jpg"}
 		,{"id":18,"id_cat":43,"prix":4500.00,"nom":"Armure complète en mithril","desc":"Une armure faite du métal le plus pur, pour une protection sans faille","image":"images/produits/armure_complete_mithril.jpg"}
 		,{"id":19,"id_cat":42,"prix":3600.00,"nom":"Epée impreignée du feu céleste","desc":"Epée de feu céleste à ne pas mettre entre toutes les mains, au risque de se voir embraser par elle","image":"images/produits/epee_feu_celeste.jpg"}
-	];
+	];	
+
+	$http.get('./services/produits_select.php?format=json')
+	.then(function successCallBack(response) {
+		$scope.products = response.data;
+		$scope.products = $scope.products.filter(function(p) {if(p.id_cat==42||p.id_cat==43) {return p}}); // remove non fantasy items
+	});
+
 	// $scope.categories = $scope.products.map(function (p) {return p.id_cat;});
  	$scope.categories = [
  		{"id":42, "nom":"Armes", "desc":"Nos armes pour vous garantir la victoire !"},
@@ -68,7 +75,7 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
  	];
  	$scope.currentCat = "";
 	$scope.title = "Tous nos produits";
-	$scope.sortByPriceAsc = true;
+	$scope.sortByPriceAsc = false;
 	$scope.sortByNameAsc = false;
 	$scope.sortByDescAsc = false;
 	$scope.sortField = 'prix';
@@ -106,7 +113,7 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 			$scope.sortField = field;
 		}
 	}
-
+	
 	$scope.nextProduct = function() {
 		if($scope.pos < $scope.products.length-1){
 			$scope.pos++;
@@ -134,9 +141,6 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 		$scope.productSelected = $scope.products[$scope.pos];
 	}
 
-	// Initialize array for first display (would be unsorted otherwise)
-	$scope.sortBy(document.getElementsByClassName("sorter")[0].children[0].children[1], 'prix');
-	
 	var _id = 0;
 	if(null != $routeParams.id) {
 		_id = $routeParams.id;
