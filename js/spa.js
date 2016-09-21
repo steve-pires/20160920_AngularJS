@@ -113,6 +113,26 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 		event.target.className = "activeSortButton";
 	}
 
+	$scope.nextProduct = function() {
+		if($scope.pos < $scope.products.length-1){
+			$scope.pos++;
+			$scope.productSelected = $scope.products[$scope.pos];
+		}
+		else {
+			alert("Nous n'avons plus d'autres produit !");
+		}
+	}
+
+	$scope.prevProduct = function() {
+		if($scope.pos > 0){
+			$scope.pos--;
+			$scope.productSelected = $scope.products[$scope.pos];
+		}
+		else {
+			alert("Doucement, vous allez casser mon bouton !");
+		}
+	}
+
 	// Initialize array for first display (would be unsorted otherwise)
 	$scope.sortBy(document.getElementsByClassName("sorter")[0].children[0].children[1], 'prix');
 	
@@ -125,11 +145,16 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 	if( 0 != _id){
 		$scope.productSelected = $scope.products.find(function(product){return product.id == _id });
 		// console.log('selected prod:' + $scope.productSelected);
-		if(null != $scope.productSelected) {
-			$scope.pos = $scope.products.indexOf($scope.productSelected);
-			// console.log('pos:' + $scope.pos);
+		if( null != $scope.productSelected) {
+			$scope.pos = $scope.products.indexOf( $scope.productSelected);
+//			console.log('pos: '+$scope.pos);
 		}
 	}
+	
+	if( null == $scope.productSelected) {
+		$scope.productSelected = $scope.products[0];
+	}
+
 }]);
 
 app.controller('CartCtrl', ['$scope', function ($scope) {	

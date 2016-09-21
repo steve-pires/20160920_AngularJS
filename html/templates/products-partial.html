@@ -21,3 +21,26 @@
 	<input class="quantite" type="number" data-ng-model="product.quantite" />
 	<div class="blankline">&nbsp;</div>
 </div>
+
+
+
+<div class="separate">&nbsp;</div>
+<form name="f" id="f" novalidate="true" method="get" action="/" enctype="application/x-www-form-urlencoded">
+	<div class="label"><label for="id">ID :</label></div>
+	<div class="data"><input type="number" name="id" id="id" size="5" maxlength="5" required="required" ng-model="productSelected.id" /></div>
+	<div class="label"><label for="id">ID_CAT :</label></div>
+	<div class="data"><input type="number" name="id_cat" id="id_cat" size="5" maxlength="5" required="required" ng-model="productSelected.id_cat" /></div>
+	<div class="label"><label for="id">quantite :</label></div>
+	<div class="data"><input type="number" name="quantite" id="quantite" size="5" maxlength="5" min="0" max="60" required="required" ng-model="productSelected.quantite" /></div>
+	<div class="label"><label for="prix">Prix :</label></div>
+	<div class="data"><input type="text" name="prix" id="prix" size="10" maxlength="10" required="required" ng-model="productSelected.prix" /></div>
+	<div class="label"><label for="nom">Nom :</label></div>
+	<div class="data"><input type="text" name="nom" id="nom" placeholder="nom du produit" size="25" maxlength="50" required="required" ng-model="productSelected.nom" /></div>
+	<div class="label"><label for="desc">Description :</label></div>
+	<div class="data"><input type="text" name="desc" id="desc" size="40" maxlength="50" ng-model="productSelected.desc" /></div>
+	<div class="label"><label for="image">Image :</label></div>
+	<div class="data"><input type="text" name="image" id="image" size="40" maxlength="127" required="required" ng-model="productSelected.image" /></div>
+	<div class="separate">&nbsp;</div>
+	<div class="buttons">
+	<input type="button" name="precedent" id="precedent" value="Precedent" ng-click="prevProduct()" /><input type="button" name="suivant" id="suivant" value="Suivant" ng-click="nextProduct()" /> <input type="button" name="raz" id="raz" value="Réinitialiser" ng-click="reset()" /> <span></span></div>
+</form>
