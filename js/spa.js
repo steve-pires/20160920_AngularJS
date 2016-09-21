@@ -61,6 +61,12 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 		,{"id":18,"id_cat":43,"prix":4500.00,"nom":"Armure complète en mithril","desc":"Une armure faite du métal le plus pur, pour une protection sans faille","image":"images/produits/armure_complete_mithril.jpg"}
 		,{"id":19,"id_cat":42,"prix":3600.00,"nom":"Epée impreignée du feu céleste","desc":"Epée de feu céleste à ne pas mettre entre toutes les mains, au risque de se voir embraser par elle","image":"images/produits/epee_feu_celeste.jpg"}
 	];
+	// $scope.categories = $scope.products.map(function (p) {return p.id_cat;});
+ 	$scope.categories = [
+ 		{"id":42, "nom":"Armes", "desc":"Nos armes pour vous garantir la victoire !"},
+ 		{"id":43, "nom":"Armures", "desc":"Nos armures vous protegerons contre tous les dangers !"}
+ 	];
+ 	$scope.currentCat = 0;
 	$scope.title = "Tous nos produits";
 	$scope.sortByPriceAsc = true;
 	$scope.sortByNameAsc = false;

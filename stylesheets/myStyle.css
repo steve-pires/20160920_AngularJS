@@ -164,3 +164,8 @@ input.quantite {
 .productOdd {
 	background: #ECF4EE;
 }
+
+#repeatSelect {
+	margin: 15px 0;
+	width: 200px;
+}

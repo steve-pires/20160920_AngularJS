@@ -8,7 +8,13 @@
 	</p>
 </div>
 
-<div data-ng-repeat="product in products | orderBy:sortField" class="productItem" data-category="{{product.id_cat}}" data-ng-class-odd="'productOdd'" data-ng-class-even="'productEven'">
+<label for="repeatSelect"> Filtrer par categorie </label>
+<select id="repeatSelect" ng-model="currentCat">
+	<option value="" selected="selected">Voir tous les produits</option>
+	<option ng-repeat="category in categories" value="{{category.id}}" title="{{category.desc}}">{{category.nom}}</option>
+</select>
+
+<div data-ng-repeat="product in products | orderBy:sortField | filter: {'id_cat': currentCat}" class="productItem" data-category="{{product.id_cat}}" data-ng-class-odd="'productOdd'" data-ng-class-even="'productEven'">
 	<p class="article">{{product.nom | prettyCase}}</p>
 	<p class="prix">{{product.prix}} G</p>
 	<p class="description">Plus d'infos : {{product.desc | prettyCase}}</p>
