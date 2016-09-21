@@ -35,7 +35,10 @@
 	<div class="label"><label for="prix">Prix</label></div>
 	<div class="data"><input type="number" name="prix" id="prix" size="10" maxlength="10" required="required" ng-model="productSelected.prix" /></div>
 	<div class="label"><label for="nom">Nom</label></div>
-	<div class="data"><input type="text" name="nom" id="nom" placeholder="nom du produit" size="25" maxlength="50" required="required" ng-model="productSelected.nom" /><p class="errorMsg" ng-show="f.nom.$error.required">Champs requis !</p></div>
+	<div class="data"><input type="text" name="nom" id="nom" placeholder="nom du produit" size="25" maxlength="50" required="required" ng-model="productSelected.nom" />
+		<!-- <p class="errorMsg" ng-show="f.nom.$error.required">Champs requis !</p> -->
+		<cb-error-required ng-show="f.nom.$error.required" />
+	</div>
 	<div class="label"><label for="desc">Description</label></div>
 	<div class="data"><input type="text" name="desc" id="desc" size="40" maxlength="50" ng-model="productSelected.desc" /></div>
 	<div class="label"><label for="image">Image</label></div>
