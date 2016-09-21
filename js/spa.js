@@ -66,7 +66,7 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
  		{"id":42, "nom":"Armes", "desc":"Nos armes pour vous garantir la victoire !"},
  		{"id":43, "nom":"Armures", "desc":"Nos armures vous protegerons contre tous les dangers !"}
  	];
- 	$scope.currentCat = 0;
+ 	$scope.currentCat = "";
 	$scope.title = "Tous nos produits";
 	$scope.sortByPriceAsc = true;
 	$scope.sortByNameAsc = false;
