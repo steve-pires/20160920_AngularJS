@@ -78,7 +78,7 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 	$scope.products.map(function(p) {p.quantite=0; return p;})
 
 	// FUNCTIONS
-	$scope.sortBy = function(clickedBtn, field) {
+	$scope.sortBy = function(field) {
 		switch ( field) {
 		  case "prix":
 		  $scope.sortByPriceAsc = !$scope.sortByPriceAsc;
@@ -105,21 +105,16 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 		else {
 			$scope.sortField = field;
 		}
-
-		var buttons = clickedBtn.parentNode.getElementsByTagName("button");
-		for (var i = buttons.length - 1; i >= 0; i--) {
-			buttons[i].className = "";
-		}
-		event.target.className = "activeSortButton";
 	}
 
 	$scope.nextProduct = function() {
 		if($scope.pos < $scope.products.length-1){
 			$scope.pos++;
 			$scope.productSelected = $scope.products[$scope.pos];
+			$scope.productSaved = angular.copy($scope.productSelected);
 		}
 		else {
-			alert("Nous n'avons plus d'autres produit !");
+			console.log("Nous n'avons plus d'autres produit !");
 		}
 	}
 
@@ -127,10 +122,16 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 		if($scope.pos > 0){
 			$scope.pos--;
 			$scope.productSelected = $scope.products[$scope.pos];
+			$scope.productSaved = angular.copy($scope.productSelected);
 		}
 		else {
-			alert("Doucement, vous allez casser mon bouton !");
+			console.log("Doucement, vous allez casser mon bouton !");
 		}
+	}
+
+	$scope.reset = function() {
+		$scope.products[$scope.pos] = angular.copy($scope.productSaved);
+		$scope.productSelected = $scope.products[$scope.pos];
 	}
 
 	// Initialize array for first display (would be unsorted otherwise)
@@ -155,6 +156,7 @@ app.controller('ProductsCtrl', ['$scope', '$routeParams', 'prettyCaseFunc', func
 		$scope.productSelected = $scope.products[0];
 	}
 
+	$scope.originalProduct = angular.copy($scope.productSelected);
 }]);
 
 app.controller('CartCtrl', ['$scope', function ($scope) {	

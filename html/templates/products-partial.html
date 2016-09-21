@@ -1,10 +1,10 @@
 <h2 class="templateTitle">{{title}}</h2>
 
 <div class="sorter">
-	<p>Trier par : 
-		<button data-ng-click="sortBy($event.target, 'nom')">Nom {{sortByNameAsc && '▲' || '▼'}}</button>
-		<button data-ng-click="sortBy($event.target, 'prix')">Prix {{sortByPriceAsc && '▲' || '▼'}}</button>
-		<button data-ng-click="sortBy($event.target, 'desc')">Description {{sortByDescAsc && '▲' || '▼'}}</button>
+	<p>Trier par 
+		<button data-ng-click="sortBy('nom')">Nom {{sortByNameAsc && '▲' || '▼'}}</button>
+		<button data-ng-click="sortBy('prix')">Prix {{sortByPriceAsc && '▲' || '▼'}}</button>
+		<button data-ng-click="sortBy('desc')">Description {{sortByDescAsc && '▲' || '▼'}}</button>
 	</p>
 </div>
 
@@ -17,7 +17,7 @@
 <div data-ng-repeat="product in products | orderBy:sortField | filter: {'id_cat': currentCat}" class="productItem" data-category="{{product.id_cat}}" data-ng-class-odd="'productOdd'" data-ng-class-even="'productEven'">
 	<p class="article">{{product.nom | prettyCase}}</p>
 	<p class="prix">{{product.prix}} G</p>
-	<p class="description">Plus d'infos : {{product.desc | prettyCase}}</p>
+	<p class="description">Plus d'infos {{product.desc | prettyCase}}</p>
 	<input class="quantite" type="number" data-ng-model="product.quantite" />
 	<div class="blankline">&nbsp;</div>
 </div>
@@ -25,20 +25,20 @@
 
 
 <div class="separate">&nbsp;</div>
-<form name="f" id="f" novalidate="true" method="get" action="/" enctype="application/x-www-form-urlencoded">
-	<div class="label"><label for="id">ID :</label></div>
+<form name="f" id="f" class="productForm" novalidate="true" method="get" action="/" enctype="application/x-www-form-urlencoded">
+	<div class="label"><label for="id">ID</label></div>
 	<div class="data"><input type="number" name="id" id="id" size="5" maxlength="5" required="required" ng-model="productSelected.id" /></div>
-	<div class="label"><label for="id">ID_CAT :</label></div>
+	<div class="label"><label for="id">ID_CAT</label></div>
 	<div class="data"><input type="number" name="id_cat" id="id_cat" size="5" maxlength="5" required="required" ng-model="productSelected.id_cat" /></div>
-	<div class="label"><label for="id">quantite :</label></div>
+	<div class="label"><label for="id">quantite</label></div>
 	<div class="data"><input type="number" name="quantite" id="quantite" size="5" maxlength="5" min="0" max="60" required="required" ng-model="productSelected.quantite" /></div>
-	<div class="label"><label for="prix">Prix :</label></div>
-	<div class="data"><input type="text" name="prix" id="prix" size="10" maxlength="10" required="required" ng-model="productSelected.prix" /></div>
-	<div class="label"><label for="nom">Nom :</label></div>
-	<div class="data"><input type="text" name="nom" id="nom" placeholder="nom du produit" size="25" maxlength="50" required="required" ng-model="productSelected.nom" /></div>
-	<div class="label"><label for="desc">Description :</label></div>
+	<div class="label"><label for="prix">Prix</label></div>
+	<div class="data"><input type="number" name="prix" id="prix" size="10" maxlength="10" required="required" ng-model="productSelected.prix" /></div>
+	<div class="label"><label for="nom">Nom</label></div>
+	<div class="data"><input type="text" name="nom" id="nom" placeholder="nom du produit" size="25" maxlength="50" required="required" ng-model="productSelected.nom" /><p class="errorMsg" ng-show="f.nom.$error.required">Champs requis !</p></div>
+	<div class="label"><label for="desc">Description</label></div>
 	<div class="data"><input type="text" name="desc" id="desc" size="40" maxlength="50" ng-model="productSelected.desc" /></div>
-	<div class="label"><label for="image">Image :</label></div>
+	<div class="label"><label for="image">Image</label></div>
 	<div class="data"><input type="text" name="image" id="image" size="40" maxlength="127" required="required" ng-model="productSelected.image" /></div>
 	<div class="separate">&nbsp;</div>
 	<div class="buttons">
