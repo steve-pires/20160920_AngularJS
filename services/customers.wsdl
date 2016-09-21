@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:typens="urn:customers" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns="http://schemas.xmlsoap.org/wsdl/" name="customers" targetNamespace="urn:customers">
+	<message name="search">
+		<part name="keywords" type="xsd:string"/>
+	</message>
+	<message name="searchResponse">
+		<part name="searchReturn" type="soapenc:Array"/>
+	</message>
+	<message name="listRequest">
+		<part name="option" type="xsd:string"/>
+	</message>
+	<message name="listResponse">
+		<part name="listReturn" type="soapenc:Array"/>
+	</message>
+	<message name="connRequest">
+		<part name="login" type="xsd:string"/>
+		<part name="mdp" type="xsd:string"/>
+	</message>
+	<message name="connResponse">
+		<part name="existing" type="xsd:string"/>
+	</message>
+	<portType name="CustomersPortType">
+		<operation name="connect">
+			<input message="typens:connRequest"/>
+			<output message="typens:connResponse"/>
+		</operation>
+		<operation name="search">
+			<input message="typens:search"/>
+			<output message="typens:searchResponse"/>
+		</operation>
+		<operation name="listing">
+			<input message="typens:listRequest"/>
+			<output message="typens:listResponse"/>
+		</operation>
+	</portType>
+	<binding name="CustomersBinding" type="typens:CustomersPortType">
+		<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<operation name="connect">
+			<soap:operation soapAction="urn:CustomersAction"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:customers"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:customers"/>
+			</output>
+		</operation>
+		<operation name="search">
+			<soap:operation soapAction="urn:CustomersAction"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:customers"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:customers"/>
+			</output>
+		</operation>
+		<operation name="listing">
+			<soap:operation soapAction="urn:CustomersAction"/>
+			<input>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:customers"/>
+			</input>
+			<output>
+				<soap:body use="encoded" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:customers"/>
+			</output>
+		</operation>
+	</binding>
+	<service name="customersService">
+		<port name="CustomersPort" binding="typens:CustomersBinding">
+			<soap:address location="http://localhost/services/customers.php"/>
+		</port>
+	</service>
+</definitions>
